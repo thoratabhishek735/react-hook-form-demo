@@ -38,8 +38,8 @@ function App() {
     formState: { errors, isSubmitSuccessful },
   } = useForm({
     resolver: yupResolver(validationSchema),
-    mode: "onBlur",
-    // criteriaMode:"firstError"
+    // mode: "onBlur",
+    criteriaMode:"firstError"
   });
 
   const formValues = useWatch({
@@ -60,6 +60,8 @@ function App() {
     control,
     name: "education", // The name of the field array
   });
+
+
   const {
     fields: companyFields,
     append: appendCompany,
@@ -150,18 +152,7 @@ function App() {
             I am student
           </label>
         </div>
-        <div className="form-group form-check">
-          <input
-            name="working"
-            type="checkbox"
-            {...register("working")}
-            className={`form-check-input`}
-            disabled={formValues.designation}
-          />
-          <label htmlFor="working" className="form-check-label">
-            I am working in company
-          </label>
-        </div>
+
 
         {formValues.designation && (
           <div>
@@ -178,7 +169,7 @@ function App() {
 
             {educationFields.map((field, index) => (
               <div key={field.id} className="my-4">
-                <label>Education</label>
+                <label>Education Institute</label>
                 <div className="d-flex">
                   <div>
                     <input
@@ -213,6 +204,20 @@ function App() {
             ))}
           </div>
         )}
+        <div className="form-group form-check">
+          <input
+            name="working"
+            type="checkbox"
+            {...register("working")}
+            className={`form-check-input`}
+            disabled={formValues.designation}
+          />
+          <label htmlFor="working" className="form-check-label">
+            I am working in company
+          </label>
+        </div>
+
+       
 
         {formValues.working && (
           <div>
@@ -238,7 +243,7 @@ function App() {
                           ? "is-invalid"
                           : ""
                       }`}
-                      {...register(`education[${index}].name`)} // Registering each input field with a unique name
+                      {...register(`company[${index}].name`)} // Registering each input field with a unique name
                       defaultValue={field.name} // Setting the default value for each input field
                     />
                     <div className="invalid-feedback">
