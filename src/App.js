@@ -227,7 +227,7 @@ function App() {
               </button>
             </h4>
 
-            {educationFields.map((field, index) => (
+            {companyFields.map((field, index) => (
               <div key={field.id} className="my-4">
                 <label>Company Name</label>
                 <div className="d-flex">
